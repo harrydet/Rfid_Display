@@ -1,9 +1,12 @@
 package rfid.com.rfiddisplay;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
 
 public class LogInActivity extends Activity {
@@ -11,7 +14,15 @@ public class LogInActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Add a progress bar
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_log_in);
+        setTitle("Landing");
+        getActionBar().setIcon(R.drawable.ic_airplane);
     }
 
 
