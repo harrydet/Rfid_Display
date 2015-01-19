@@ -15,10 +15,9 @@
         android:layout_height="45dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:id="@+id/enter_username"
+        android:id="@+id/ticket_number_edittext"
         android:password="false"
         android:singleLine="true"
-        android:inputType="textEmailAddress"
         android:hint="Enter ticket number..."/>
 
     <Button

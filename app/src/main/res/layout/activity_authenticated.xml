@@ -1,0 +1,101 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffcc0000"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp"
+        android:scrollbars="none"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:padding="3dp"
+                android:layout_marginTop="5dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Fusce gravida venenatis accumsan. Nunc nec mattis turpis. Duis nunc purus, rutrum aliquet convallis
+            sit amet, aliquet eu justo. Morbi rhoncus mollis arcu, nec aliquam augue hendrerit sit amet. Maecenas
+             non auctor neque. Morbi at pellentesque elit. Maecenas maximus nisl ac leo maximus, at dictum urna mollis.
+             Sed nisi est, fermentum eu neque id, sagittis molestie orci. Aenean a ex vel libero maximus fringilla et
+             in arcu. " />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:padding="3dp"
+                android:layout_marginTop="5dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Fusce gravida venenatis accumsan. Nunc nec mattis turpis. Duis nunc purus, rutrum aliquet convallis
+            sit amet, aliquet eu justo. Morbi rhoncus mollis arcu, nec aliquam augue hendrerit sit amet. Maecenas
+             non auctor neque. Morbi at pellentesque elit. Maecenas maximus nisl ac leo maximus, at dictum urna mollis.
+             Sed nisi est, fermentum eu neque id, sagittis molestie orci. Aenean a ex vel libero maximus fringilla et
+             in arcu. " />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:padding="3dp"
+                android:layout_marginTop="5dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Fusce gravida venenatis accumsan. Nunc nec mattis turpis. Duis nunc purus, rutrum aliquet convallis
+            sit amet, aliquet eu justo. Morbi rhoncus mollis arcu, nec aliquam augue hendrerit sit amet. Maecenas
+             non auctor neque. Morbi at pellentesque elit. Maecenas maximus nisl ac leo maximus, at dictum urna mollis.
+             Sed nisi est, fermentum eu neque id, sagittis molestie orci. Aenean a ex vel libero maximus fringilla et
+             in arcu. " />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:padding="3dp"
+                android:layout_marginTop="5dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Fusce gravida venenatis accumsan. Nunc nec mattis turpis. Duis nunc purus, rutrum aliquet convallis
+            sit amet, aliquet eu justo. Morbi rhoncus mollis arcu, nec aliquam augue hendrerit sit amet. Maecenas
+             non auctor neque. Morbi at pellentesque elit. Maecenas maximus nisl ac leo maximus, at dictum urna mollis.
+             Sed nisi est, fermentum eu neque id, sagittis molestie orci. Aenean a ex vel libero maximus fringilla et
+             in arcu. " />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:padding="3dp"
+                android:layout_marginTop="5dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Fusce gravida venenatis accumsan. Nunc nec mattis turpis. Duis nunc purus, rutrum aliquet convallis
+            sit amet, aliquet eu justo. Morbi rhoncus mollis arcu, nec aliquam augue hendrerit sit amet. Maecenas
+             non auctor neque. Morbi at pellentesque elit. Maecenas maximus nisl ac leo maximus, at dictum urna mollis.
+             Sed nisi est, fermentum eu neque id, sagittis molestie orci. Aenean a ex vel libero maximus fringilla et
+             in arcu. " />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:padding="3dp"
+                android:layout_marginTop="5dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Fusce gravida venenatis accumsan. Nunc nec mattis turpis. Duis nunc purus, rutrum aliquet convallis
+            sit amet, aliquet eu justo. Morbi rhoncus mollis arcu, nec aliquam augue hendrerit sit amet. Maecenas
+             non auctor neque. Morbi at pellentesque elit. Maecenas maximus nisl ac leo maximus, at dictum urna mollis.
+             Sed nisi est, fermentum eu neque id, sagittis molestie orci. Aenean a ex vel libero maximus fringilla et
+             in arcu. " />
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
