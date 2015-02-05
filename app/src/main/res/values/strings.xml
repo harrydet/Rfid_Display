@@ -6,6 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="action_logout">Logout</string>
     <string name="title_activity_authenticated">AuthenticatedActivity</string>
-    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="title_activity_splash_screen">Landing</string>
 
 </resources>
