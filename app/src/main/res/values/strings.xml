@@ -7,5 +7,6 @@
     <string name="action_logout">Logout</string>
     <string name="title_activity_authenticated">AuthenticatedActivity</string>
     <string name="title_activity_splash_screen">Landing</string>
+    <string name="title_activity_trial">TrialActivity</string>
 
 </resources>

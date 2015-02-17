@@ -28,12 +28,8 @@
                 android:background="@drawable/edittext_bg"
                 android:padding="3dp"
                 android:layout_marginTop="5dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Fusce gravida venenatis accumsan. Nunc nec mattis turpis. Duis nunc purus, rutrum aliquet convallis
-            sit amet, aliquet eu justo. Morbi rhoncus mollis arcu, nec aliquam augue hendrerit sit amet. Maecenas
-             non auctor neque. Morbi at pellentesque elit. Maecenas maximus nisl ac leo maximus, at dictum urna mollis.
-             Sed nisi est, fermentum eu neque id, sagittis molestie orci. Aenean a ex vel libero maximus fringilla et
-             in arcu. " />
+                android:text=""
+                android:id="@+id/top_box"/>
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
