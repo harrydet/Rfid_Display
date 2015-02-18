@@ -68,7 +68,7 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-<!--                   IMPORTANT: Change "com.parse.starter" to match your app's package name. -->
+                <!-- IMPORTANT: Change "com.parse.starter" to match your app's package name. -->
                 <category android:name="rfid.com.rfiddisplay" />
             </intent-filter>
         </receiver>
@@ -80,6 +80,10 @@
         <activity
             android:name=".TrialActivity"
             android:label="@string/title_activity_trial" >
+        </activity>
+        <activity
+            android:name=".LandingActivity"
+            android:label="@string/title_activity_landing" >
         </activity>
     </application>
 

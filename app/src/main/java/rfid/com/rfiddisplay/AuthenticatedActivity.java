@@ -1,20 +1,29 @@
 package rfid.com.rfiddisplay;
 
+import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 
@@ -23,7 +32,9 @@ public class AuthenticatedActivity extends Activity {
 
     HashMap<String, String> serialCache;
     JSONObject jsonObject;
+    TextView gateNumber;
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,19 +44,33 @@ public class AuthenticatedActivity extends Activity {
 
         setContentView(R.layout.activity_authenticated);
         String json = getIntent().getStringExtra("com.parse.Data");
-        Toast.makeText(getApplicationContext(), json, Toast.LENGTH_SHORT).show();
-        TextView topBox = (TextView)findViewById(R.id.top_box);
-        topBox.setText(json);
+        gateNumber = (TextView)findViewById(R.id.gateNumberText);
 
         serialCache = new HashMap<String, String>();
-        serialCache.put("335391", "Gate 1");
-        serialCache.put("335392", "Gate 2");
-        serialCache.put("335393", "Gate 3");
+        serialCache.put("335391", "1");
+        serialCache.put("335392", "2");
+        serialCache.put("335393", "3");
+
+
+
 
         try {
             if(json != null){
                 jsonObject = new JSONObject(json);
-                topBox.setText(jsonObject.get("payload").toString());
+                jsonObject = jsonObject.getJSONObject("payload");
+                gateNumber.setText(serialCache.get(jsonObject.get("serial_id")));
+
+                int totalPois = Integer.parseInt(jsonObject.get("total_pois").toString());
+                TextView [] pois = new TextView[totalPois];
+                for(int i = 0; i < totalPois; i++){
+                    pois[i] = new TextView(this);
+                    pois[i].setText(jsonObject.get("poi" + (i+1)).toString());
+                    pois[i].setLayoutParams(new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    pois[i].setBackground(getResources().getDrawable(R.drawable.edittext_bg));
+                    pois[i].setPadding(3, 3, 3, 3);
+                    //scroller.addView(pois[i]);
+
+                }
             }
         } catch (JSONException e) {
             Log.e("JSON ERROR", "Error converting String to JSON Object.");

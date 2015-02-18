@@ -1,97 +1,123 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffcc0000"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:weightSum="2">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:background="@drawable/customborder"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="You are near reader: "
+            android:id="@+id/titleText"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textStyle="normal|bold"
+            android:textSize="16dp"
+            android:padding="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/gateNumberText"
+            android:text="5"
+            android:textColor="@color/apptheme_color"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:textSize="100dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingTop="5dp"
         android:scrollbars="none"
-        android:overScrollMode="never">
-
+        android:overScrollMode="never"
+        android:layout_weight="1.3">
+        
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-            <TextView
+                <Button
+                    android:background="@drawable/largebuttons_btn_default_holo_light"
+                    android:layout_height="100dp"
+                    android:padding="3dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.98"
+                    android:drawableTop="@drawable/ic_map"
+                    android:text="Navigate to gate"/>
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="0.04"/>
+
+                <Button
+                    android:background="@drawable/largebuttons_btn_default_holo_light"
+                    android:layout_height="100dp"
+                    android:padding="3dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.98"
+                    android:drawableTop="@drawable/ic_pois"
+                    android:text="Explore area"/>
+
+            </LinearLayout>
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="5dp" />
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edittext_bg"
-                android:padding="3dp"
-                android:layout_marginTop="5dp"
-                android:text=""
-                android:id="@+id/top_box"/>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_bg"
-                android:padding="3dp"
-                android:layout_marginTop="5dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Fusce gravida venenatis accumsan. Nunc nec mattis turpis. Duis nunc purus, rutrum aliquet convallis
-            sit amet, aliquet eu justo. Morbi rhoncus mollis arcu, nec aliquam augue hendrerit sit amet. Maecenas
-             non auctor neque. Morbi at pellentesque elit. Maecenas maximus nisl ac leo maximus, at dictum urna mollis.
-             Sed nisi est, fermentum eu neque id, sagittis molestie orci. Aenean a ex vel libero maximus fringilla et
-             in arcu. " />
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_bg"
-                android:padding="3dp"
-                android:layout_marginTop="5dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Fusce gravida venenatis accumsan. Nunc nec mattis turpis. Duis nunc purus, rutrum aliquet convallis
-            sit amet, aliquet eu justo. Morbi rhoncus mollis arcu, nec aliquam augue hendrerit sit amet. Maecenas
-             non auctor neque. Morbi at pellentesque elit. Maecenas maximus nisl ac leo maximus, at dictum urna mollis.
-             Sed nisi est, fermentum eu neque id, sagittis molestie orci. Aenean a ex vel libero maximus fringilla et
-             in arcu. " />
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_bg"
-                android:padding="3dp"
-                android:layout_marginTop="5dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Fusce gravida venenatis accumsan. Nunc nec mattis turpis. Duis nunc purus, rutrum aliquet convallis
-            sit amet, aliquet eu justo. Morbi rhoncus mollis arcu, nec aliquam augue hendrerit sit amet. Maecenas
-             non auctor neque. Morbi at pellentesque elit. Maecenas maximus nisl ac leo maximus, at dictum urna mollis.
-             Sed nisi est, fermentum eu neque id, sagittis molestie orci. Aenean a ex vel libero maximus fringilla et
-             in arcu. " />
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_bg"
-                android:padding="3dp"
-                android:layout_marginTop="5dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Fusce gravida venenatis accumsan. Nunc nec mattis turpis. Duis nunc purus, rutrum aliquet convallis
-            sit amet, aliquet eu justo. Morbi rhoncus mollis arcu, nec aliquam augue hendrerit sit amet. Maecenas
-             non auctor neque. Morbi at pellentesque elit. Maecenas maximus nisl ac leo maximus, at dictum urna mollis.
-             Sed nisi est, fermentum eu neque id, sagittis molestie orci. Aenean a ex vel libero maximus fringilla et
-             in arcu. " />
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittext_bg"
-                android:padding="3dp"
-                android:layout_marginTop="5dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Fusce gravida venenatis accumsan. Nunc nec mattis turpis. Duis nunc purus, rutrum aliquet convallis
-            sit amet, aliquet eu justo. Morbi rhoncus mollis arcu, nec aliquam augue hendrerit sit amet. Maecenas
-             non auctor neque. Morbi at pellentesque elit. Maecenas maximus nisl ac leo maximus, at dictum urna mollis.
-             Sed nisi est, fermentum eu neque id, sagittis molestie orci. Aenean a ex vel libero maximus fringilla et
-             in arcu. " />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Button
+                    android:background="@drawable/largebuttons_btn_default_holo_light"
+                    android:layout_height="100dp"
+                    android:padding="3dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.98"
+                    android:drawableTop="@drawable/ic_info"
+                    android:text="Information"/>
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="0.04"/>
+
+                <Button
+                    android:background="@drawable/largebuttons_btn_default_holo_light"
+                    android:layout_height="100dp"
+                    android:padding="3dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.98"
+                    android:drawableTop="@drawable/ic_logout_black"
+                    android:text="Logout"/>
+
+            </LinearLayout>
+               
+         </LinearLayout>        
 
     </ScrollView>
 
-</RelativeLayout>
+</LinearLayout>

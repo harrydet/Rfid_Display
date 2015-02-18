@@ -15,7 +15,7 @@ public class PushReceiver extends ParsePushBroadcastReceiver {
 
     @Override
     protected Bitmap getLargeIcon(Context context, Intent intent){
-        Bitmap largeIcon = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_airplane_white);
+        Bitmap largeIcon = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_airplane_red);
 
         return largeIcon;
     }

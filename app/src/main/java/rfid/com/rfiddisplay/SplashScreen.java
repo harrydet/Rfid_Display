@@ -19,7 +19,7 @@ public class SplashScreen extends Activity {
 
         final Class<? extends Activity> activityClass;
         if(userIsLoggedOn())
-            activityClass = AuthenticatedActivity.class;
+            activityClass = LandingActivity.class;
         else
             activityClass = LogInActivity.class;
 

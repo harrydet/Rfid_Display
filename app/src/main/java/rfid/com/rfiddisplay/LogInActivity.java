@@ -86,7 +86,7 @@ public class LogInActivity extends Activity implements OnTaskCompleted, View.OnC
         installation.put("passportNo", passportNumber);
         installation.saveInBackground();
 
-        Intent newActivity = new Intent(this, AuthenticatedActivity.class);
+        Intent newActivity = new Intent(this, LandingActivity.class);
         this.startActivity(newActivity);
     }
 
