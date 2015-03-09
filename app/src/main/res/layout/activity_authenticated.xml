@@ -67,7 +67,8 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.98"
                     android:drawableTop="@drawable/ic_map"
-                    android:text="Navigate to gate"/>
+                    android:text="Navigate to gate"
+                    android:id="@+id/navigate_to_gate_button" />
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="100dp"
@@ -80,7 +81,8 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.98"
                     android:drawableTop="@drawable/ic_pois"
-                    android:text="Explore area"/>
+                    android:text="Explore area"
+                    android:id="@+id/explore_area_button"/>
 
             </LinearLayout>
             <Space
@@ -99,7 +101,8 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.98"
                     android:drawableTop="@drawable/ic_info"
-                    android:text="Information"/>
+                    android:text="Information"
+                    android:id="@+id/information_button"/>
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="100dp"
@@ -112,7 +115,8 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.98"
                     android:drawableTop="@drawable/ic_logout_black"
-                    android:text="Logout"/>
+                    android:text="Logout"
+                    android:id="@+id/logout_button"/>
 
             </LinearLayout>
                

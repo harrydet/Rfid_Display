@@ -85,6 +85,10 @@
             android:name=".LandingActivity"
             android:label="@string/title_activity_landing" >
         </activity>
+        <activity
+            android:name=".ExploreAreaActivity"
+            android:label="@string/title_activity_explore_area" >
+        </activity>
     </application>
 
 </manifest>

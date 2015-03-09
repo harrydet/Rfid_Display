@@ -9,5 +9,6 @@
     <string name="title_activity_splash_screen">Landing</string>
     <string name="title_activity_trial">TrialActivity</string>
     <string name="title_activity_landing">LandingActivity</string>
+    <string name="title_activity_explore_area">ExploreAreaActivity</string>
 
 </resources>

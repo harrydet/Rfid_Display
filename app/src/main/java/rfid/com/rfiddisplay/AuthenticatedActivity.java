@@ -17,22 +17,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
-public class AuthenticatedActivity extends Activity {
+public class AuthenticatedActivity extends Activity implements OnTaskCompleted, View.OnClickListener{
 
     HashMap<String, String> serialCache;
     JSONObject jsonObject;
     TextView gateNumber;
+    private JSONParser asyncRequest;
+    private static String responseURL = "http://178.62.34.201/phpAppResponse/replyApp.php";
+    private Button exploreAreaButton;
+
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -45,6 +54,8 @@ public class AuthenticatedActivity extends Activity {
         setContentView(R.layout.activity_authenticated);
         String json = getIntent().getStringExtra("com.parse.Data");
         gateNumber = (TextView)findViewById(R.id.gateNumberText);
+        exploreAreaButton = (Button) findViewById(R.id.explore_area_button);
+        exploreAreaButton.setOnClickListener(this);
 
         serialCache = new HashMap<String, String>();
         serialCache.put("335391", "1");
@@ -91,14 +102,41 @@ public class AuthenticatedActivity extends Activity {
         int id = item.getItemId();
         switch(id){
             case R.id.action_logout:
-                SharedPreferences settings = PreferenceManager
-                        .getDefaultSharedPreferences(getApplicationContext());
-                SharedPreferences.Editor editor = settings.edit();
-                editor.putString("auth_token", "NOT_LOGGED_IN");
-                editor.commit();
-                Intent switchActivity = new Intent(this, SplashScreen.class);
-                this.startActivity(switchActivity);
+                logoutUser();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.logout_button:
+                logoutUser();
+                break;
+            case R.id.explore_area_button:
+                setProgressBarIndeterminateVisibility(true);
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("tag", "explore_more"));
+                params.add(new BasicNameValuePair("gate_number", gateNumber.getText().toString()));
+                asyncRequest = new JSONParser(this, responseURL);
+                asyncRequest.execute(params);
+                break;
+        }
+    }
+
+    private void logoutUser(){
+        SharedPreferences settings = PreferenceManager
+                .getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("auth_token", "NOT_LOGGED_IN");
+        editor.commit();
+        Intent switchActivity = new Intent(this, SplashScreen.class);
+        this.startActivity(switchActivity);
+    }
+
+    @Override
+    public void onTaskCompleted(JSONObject jObj) {
+        setProgressBarIndeterminateVisibility(false);
+        Toast.makeText(getApplicationContext(), "Result: " + jObj.toString(), Toast.LENGTH_LONG).show();
     }
 }
