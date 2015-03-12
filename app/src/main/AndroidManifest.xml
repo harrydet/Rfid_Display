@@ -3,7 +3,6 @@
     package="rfid.com.rfiddisplay" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -78,16 +77,28 @@
             android:resource="@drawable/ic_airplane_white" />
 
         <activity
-            android:name=".TrialActivity"
-            android:label="@string/title_activity_trial" >
-        </activity>
-        <activity
             android:name=".LandingActivity"
             android:label="@string/title_activity_landing" >
         </activity>
         <activity
             android:name=".ExploreAreaActivity"
             android:label="@string/title_activity_explore_area" >
+        </activity>
+        <activity
+            android:name=".PoiListActivity"
+            android:label="@string/title_poi_list"
+            android:parentActivityName=".AuthenticatedActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="rfid.com.rfiddisplay.AuthenticatedActivity" />
+        </activity>
+        <activity
+            android:name=".PoiDetailActivity"
+            android:label="@string/title_poi_detail"
+            android:parentActivityName=".PoiListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="rfid.com.rfiddisplay.PoiListActivity" />
         </activity>
     </application>
 

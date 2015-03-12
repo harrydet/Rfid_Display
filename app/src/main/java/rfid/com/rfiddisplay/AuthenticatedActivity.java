@@ -1,12 +1,9 @@
 package rfid.com.rfiddisplay;
 
 import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -14,11 +11,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +21,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +31,7 @@ public class AuthenticatedActivity extends Activity implements OnTaskCompleted, 
 
     HashMap<String, String> serialCache;
     JSONObject jsonObject;
-    TextView gateNumber;
+    TextView areaID;
     private JSONParser asyncRequest;
     private static String responseURL = "http://178.62.34.201/phpAppResponse/replyApp.php";
     private Button exploreAreaButton;
@@ -53,7 +47,7 @@ public class AuthenticatedActivity extends Activity implements OnTaskCompleted, 
 
         setContentView(R.layout.activity_authenticated);
         String json = getIntent().getStringExtra("com.parse.Data");
-        gateNumber = (TextView)findViewById(R.id.gateNumberText);
+        areaID = (TextView)findViewById(R.id.gateNumberText);
         exploreAreaButton = (Button) findViewById(R.id.explore_area_button);
         exploreAreaButton.setOnClickListener(this);
 
@@ -69,19 +63,8 @@ public class AuthenticatedActivity extends Activity implements OnTaskCompleted, 
             if(json != null){
                 jsonObject = new JSONObject(json);
                 jsonObject = jsonObject.getJSONObject("payload");
-                gateNumber.setText(serialCache.get(jsonObject.get("serial_id")));
+                areaID.setText(serialCache.get(jsonObject.get("serial_id")));
 
-                int totalPois = Integer.parseInt(jsonObject.get("total_pois").toString());
-                TextView [] pois = new TextView[totalPois];
-                for(int i = 0; i < totalPois; i++){
-                    pois[i] = new TextView(this);
-                    pois[i].setText(jsonObject.get("poi" + (i+1)).toString());
-                    pois[i].setLayoutParams(new ActionBar.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                    pois[i].setBackground(getResources().getDrawable(R.drawable.edittext_bg));
-                    pois[i].setPadding(3, 3, 3, 3);
-                    //scroller.addView(pois[i]);
-
-                }
             }
         } catch (JSONException e) {
             Log.e("JSON ERROR", "Error converting String to JSON Object.");
@@ -117,7 +100,7 @@ public class AuthenticatedActivity extends Activity implements OnTaskCompleted, 
                 setProgressBarIndeterminateVisibility(true);
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("tag", "explore_more"));
-                params.add(new BasicNameValuePair("gate_number", gateNumber.getText().toString()));
+                params.add(new BasicNameValuePair("area_id", areaID.getText().toString()));
                 asyncRequest = new JSONParser(this, responseURL);
                 asyncRequest.execute(params);
                 break;
@@ -137,6 +120,11 @@ public class AuthenticatedActivity extends Activity implements OnTaskCompleted, 
     @Override
     public void onTaskCompleted(JSONObject jObj) {
         setProgressBarIndeterminateVisibility(false);
+
+        Intent newActivity = new Intent(this, LandingActivity.class);
+        newActivity.putExtra("json_object", jsonObject.toString());
+        this.startActivity(newActivity);
+
         Toast.makeText(getApplicationContext(), "Result: " + jObj.toString(), Toast.LENGTH_LONG).show();
     }
 }

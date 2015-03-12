@@ -10,5 +10,7 @@
     <string name="title_activity_trial">TrialActivity</string>
     <string name="title_activity_landing">LandingActivity</string>
     <string name="title_activity_explore_area">ExploreAreaActivity</string>
+    <string name="title_poi_list">Pois</string>
+    <string name="title_poi_detail">Poi Detail</string>
 
 </resources>

@@ -1,17 +1,33 @@
 package rfid.com.rfiddisplay;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class ExploreAreaActivity extends Activity {
+
+    private JSONObject poisJson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore_area);
+
+        Intent intent = getIntent();
+        String jsonString = intent.getStringExtra("json_object");
+        try {
+            poisJson = new JSONObject(jsonString);
+        } catch (JSONException e) {
+            Log.e("Explore Area Activity", "Error parsing data " + e.toString());
+        }
+
     }
 
 
