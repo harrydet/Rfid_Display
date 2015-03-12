@@ -1,0 +1,8 @@
+C:\Users\Harry\ASProj\DBuddy\Rfid\app\build\intermediates\classes\debug
+C:\Users\Harry\ASProj\DBuddy\Rfid\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.0-81152ff10a6fd60a244981ee5e964e03c7f88926.jar
+C:\Users\Harry\ASProj\DBuddy\Rfid\app\build\intermediates\pre-dexed\debug\classes-d8062e2daa74fa15ffa6437a2e3292bb3e3825cc.jar
+C:\Users\Harry\ASProj\DBuddy\Rfid\app\build\intermediates\pre-dexed\debug\bolts-android-1.1.4-8fe340c1ef6062ca7f09c19106784e65f4d7bc12.jar
+C:\Users\Harry\ASProj\DBuddy\Rfid\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.0-8c2d25c5c27b64d91bb3d24a1d7e8f6525faca0b.jar
+C:\Users\Harry\ASProj\DBuddy\Rfid\app\build\intermediates\pre-dexed\debug\classes-d97c7e39b91fc37ff4d4f70f6fcd264c4fd364ce.jar
+C:\Users\Harry\ASProj\DBuddy\Rfid\app\build\intermediates\pre-dexed\debug\Parse-1.8.1-abfe9474819989479a15905bf4fd372f3e5c756d.jar
+C:\Users\Harry\ASProj\DBuddy\Rfid\app\build\intermediates\pre-dexed\debug\classes-c6dc32419078c1f4e7c9ed41f814f6eceb784d3b.jar
