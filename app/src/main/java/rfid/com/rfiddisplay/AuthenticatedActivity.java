@@ -26,6 +26,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * TODO: Save the pois locally as they dissappear when the user taps back to authenticated activity
+ *
+ */
 
 public class AuthenticatedActivity extends Activity implements OnTaskCompleted, View.OnClickListener{
 
@@ -42,8 +46,6 @@ public class AuthenticatedActivity extends Activity implements OnTaskCompleted, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_authenticated);
         String json = getIntent().getStringExtra("com.parse.Data");
@@ -121,10 +123,15 @@ public class AuthenticatedActivity extends Activity implements OnTaskCompleted, 
     public void onTaskCompleted(JSONObject jObj) {
         setProgressBarIndeterminateVisibility(false);
 
-        Intent newActivity = new Intent(this, LandingActivity.class);
-        newActivity.putExtra("json_object", jsonObject.toString());
+        Intent newActivity = new Intent(this, PoiListActivity.class);
+
+        SharedPreferences settings = PreferenceManager
+                .getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("json_object", jObj.toString());
+        editor.commit();
+
         this.startActivity(newActivity);
 
-        Toast.makeText(getApplicationContext(), "Result: " + jObj.toString(), Toast.LENGTH_LONG).show();
     }
 }

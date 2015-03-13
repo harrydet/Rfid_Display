@@ -41,8 +41,6 @@ public class LogInActivity extends Activity implements OnTaskCompleted, View.OnC
 
         //Add a progress bar
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_log_in);
 

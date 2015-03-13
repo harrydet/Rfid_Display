@@ -3,8 +3,15 @@ package rfid.com.rfiddisplay;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.MenuItem;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
 
 
 /**
@@ -23,7 +30,7 @@ import android.view.MenuItem;
  * {@link PoiListFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class PoiListActivity extends Activity
+public class PoiListActivity extends FragmentActivity
         implements PoiListFragment.Callbacks {
 
     /**
@@ -31,6 +38,8 @@ public class PoiListActivity extends Activity
      * device.
      */
     private boolean mTwoPane;
+    private List<PoiItem> ITEMS;
+    private String jsonString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +47,10 @@ public class PoiListActivity extends Activity
         setContentView(R.layout.activity_poi_list);
         // Show the Up button in the action bar.
         getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Intent intent = getIntent();
+        jsonString = intent.getStringExtra("json_object");
+
 
         if (findViewById(R.id.poi_detail_container) != null) {
             // The detail container view will be present only in the
@@ -53,7 +66,6 @@ public class PoiListActivity extends Activity
                     .setActivateOnItemClick(true);
         }
 
-        // TODO: If exposing deep links into your app, handle intents here.
     }
 
     @Override

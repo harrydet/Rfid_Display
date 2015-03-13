@@ -1,52 +1,38 @@
 package rfid.com.rfiddisplay;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.ListFragment;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import rfid.com.rfiddisplay.dummy.DummyContent;
 
-/**
- * A list fragment representing a list of Pois. This fragment
- * also supports tablet devices by allowing list items to be given an
- * 'activated' state upon selection. This helps indicate which item is
- * currently being viewed in a {@link PoiDetailFragment}.
- * <p/>
- * Activities containing this fragment MUST implement the {@link Callbacks}
- * interface.
- */
+
 public class PoiListFragment extends ListFragment {
 
-    /**
-     * The serialization (saved instance state) Bundle key representing the
-     * activated item position. Only used on tablets.
-     */
+
     private static final String STATE_ACTIVATED_POSITION = "activated_position";
 
-    /**
-     * The fragment's current callback object, which is notified of list item
-     * clicks.
-     */
+
     private Callbacks mCallbacks = sDummyCallbacks;
 
-    /**
-     * The current activated item position. Only used on tablets.
-     */
+
     private int mActivatedPosition = ListView.INVALID_POSITION;
 
-    /**
-     * A callback interface that all activities containing this fragment must
-     * implement. This mechanism allows activities to be notified of item
-     * selections.
-     */
+
     public interface Callbacks {
-        /**
-         * Callback for when an item has been selected.
-         */
+
         public void onItemSelected(String id);
     }
 
@@ -59,11 +45,9 @@ public class PoiListFragment extends ListFragment {
         public void onItemSelected(String id) {
         }
     };
+    private List<PoiItem> ITEMS = new ArrayList<PoiItem>();;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
+
     public PoiListFragment() {
     }
 
@@ -71,12 +55,31 @@ public class PoiListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TODO: replace with a real list adapter.
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(
+
+        SharedPreferences settings = PreferenceManager
+                .getDefaultSharedPreferences(getActivity().getApplicationContext());
+        String jsonString = settings.getString("json_object", null/*default value*/);
+        try {
+            JSONObject jObj = new JSONObject(jsonString);
+            int length = jObj.length();
+            for(int i = 0;i < length; i++){
+                String index = String.valueOf(i);
+                JSONObject innerObj = jObj.getJSONObject(index);
+                String poiName = innerObj.getString("poiName");
+                String poiDescription = innerObj.getString("poiDescription");
+                int poiCategory = innerObj.getInt("poiCategory");
+                ITEMS.add(new PoiItem(Integer.toString(i), poiName, poiDescription, poiCategory));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+       /* setListAdapter(new ArrayAdapter<PoiItem>(
                 getActivity(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                DummyContent.ITEMS));
+                R.layout.custom_list_view_layout,
+                R.id.list_item_title,
+                ITEMS));*/
+        setListAdapter(new CustomAdapter(getActivity(), ITEMS));
     }
 
     @Override
@@ -116,7 +119,7 @@ public class PoiListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+        mCallbacks.onItemSelected(ITEMS.get(position).id);
     }
 
     @Override
