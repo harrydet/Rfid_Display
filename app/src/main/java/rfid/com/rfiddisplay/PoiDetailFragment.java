@@ -1,12 +1,17 @@
 package rfid.com.rfiddisplay;
 
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -16,13 +21,25 @@ import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
 import com.nineoldandroids.view.ViewHelper;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 import rfid.com.rfiddisplay.dummy.DummyContent;
+import rfid.com.rfiddisplay.helpers.ImageLoader;
 
 /**
  * A fragment representing a single Poi detail screen.
@@ -36,10 +53,12 @@ public class PoiDetailFragment extends Fragment implements ObservableScrollViewC
      * represents.
      */
 
+    private final String imageURL = "http://harrydetsis.com/admin/";
+
     private static final float MAX_TEXT_SCALE_DELTA = 0.3f;
     private  Map<String, PoiItem> ITEM_MAP = new HashMap<String, PoiItem>();
 
-    private View mImageView;
+    private ImageView mImageView;
     private View mOverlayView;
 
     public static final String ARG_ITEM_ID = "item_id";
@@ -75,7 +94,8 @@ public class PoiDetailFragment extends Fragment implements ObservableScrollViewC
                     String poiName = innerObj.getString("poiName");
                     String poiDescription = innerObj.getString("poiDescription");
                     int poiCategory = innerObj.getInt("poiCategory");
-                    ITEM_MAP.put(Integer.toString(i), new PoiItem(Integer.toString(i), poiName, poiDescription, poiCategory));
+                    String locationURL = innerObj.getString("poiCoverImage");
+                    ITEM_MAP.put(Integer.toString(i), new PoiItem(Integer.toString(i), poiName, poiDescription, poiCategory, locationURL));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -93,10 +113,13 @@ public class PoiDetailFragment extends Fragment implements ObservableScrollViewC
         if (mItem != null) {
             final ObservableScrollView scrollView = (ObservableScrollView) rootView.findViewById(R.id.obsScrollView);
             scrollView.setScrollViewCallbacks(this);
-            mImageView = rootView.findViewById(R.id.image);
+            mImageView = (ImageView) rootView.findViewById(R.id.image);
             mOverlayView = rootView.findViewById(R.id.overlay);
             mTitleView = (TextView) rootView.findViewById(R.id.title);
-            mTitleView.setText("Test Poi");
+            mTitleView.setText(mItem.poiName);
+
+            ImageLoader imgLoader = new ImageLoader(getActivity().getApplicationContext());
+            imgLoader.DisplayImage(imageURL + mItem.locationURL, R.drawable.ic_airplane_red, mImageView);
 
             ScrollUtils.addOnGlobalLayoutListener(scrollView, new Runnable() {
                 @Override
@@ -146,5 +169,15 @@ public class PoiDetailFragment extends Fragment implements ObservableScrollViewC
     @Override
     public void onUpOrCancelMotionEvent(ScrollState scrollState) {
 
+    }
+
+    private static InputStream fetch(String address) throws MalformedURLException,IOException {
+        HttpGet httpRequest = new HttpGet(URI.create(address) );
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpResponse response = (HttpResponse) httpclient.execute(httpRequest);
+        HttpEntity entity = response.getEntity();
+        BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity);
+        InputStream instream = bufHttpEntity.getContent();
+        return instream;
     }
 }

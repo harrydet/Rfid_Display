@@ -68,7 +68,8 @@ public class PoiListFragment extends ListFragment {
                 String poiName = innerObj.getString("poiName");
                 String poiDescription = innerObj.getString("poiDescription");
                 int poiCategory = innerObj.getInt("poiCategory");
-                ITEMS.add(new PoiItem(Integer.toString(i), poiName, poiDescription, poiCategory));
+                String locationURL = innerObj.getString("poiCoverImage");
+                ITEMS.add(new PoiItem(Integer.toString(i), poiName, poiDescription, poiCategory, locationURL));
             }
         } catch (JSONException e) {
             e.printStackTrace();
