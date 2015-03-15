@@ -28,10 +28,9 @@ import java.util.List;
 
 /**
  * TODO: Save the pois locally as they dissappear when the user taps back to authenticated activity
- *
  */
 
-public class AuthenticatedActivity extends Activity implements OnTaskCompleted, View.OnClickListener{
+public class AuthenticatedActivity extends Activity implements OnTaskCompleted, View.OnClickListener {
 
     HashMap<String, String> serialCache;
     JSONObject jsonObject;
@@ -39,6 +38,9 @@ public class AuthenticatedActivity extends Activity implements OnTaskCompleted, 
     private JSONParser asyncRequest;
     private static String responseURL = "http://178.62.34.201/phpAppResponse/replyApp.php";
     private Button exploreAreaButton;
+    private Button logoutButton;
+    private Button navigateButton;
+    private Button informationButton;
 
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -49,9 +51,16 @@ public class AuthenticatedActivity extends Activity implements OnTaskCompleted, 
 
         setContentView(R.layout.activity_authenticated);
         String json = getIntent().getStringExtra("com.parse.Data");
-        areaID = (TextView)findViewById(R.id.gateNumberText);
+        areaID = (TextView) findViewById(R.id.gateNumberText);
         exploreAreaButton = (Button) findViewById(R.id.explore_area_button);
         exploreAreaButton.setOnClickListener(this);
+        logoutButton = (Button) findViewById(R.id.logout_button);
+        logoutButton.setOnClickListener(this);
+        navigateButton = (Button)findViewById(R.id.navigate_to_gate_button);
+        navigateButton.setOnClickListener(this);
+        informationButton = (Button) findViewById(R.id.information_button);
+        informationButton.setOnClickListener(this);
+
 
         serialCache = new HashMap<String, String>();
         serialCache.put("335391", "1");
@@ -59,14 +68,20 @@ public class AuthenticatedActivity extends Activity implements OnTaskCompleted, 
         serialCache.put("335393", "3");
 
 
-
-
+        SharedPreferences settings = PreferenceManager
+                .getDefaultSharedPreferences(getApplicationContext());
         try {
-            if(json != null){
+            if (json != null) {
                 jsonObject = new JSONObject(json);
                 jsonObject = jsonObject.getJSONObject("payload");
                 areaID.setText(serialCache.get(jsonObject.get("serial_id")));
 
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putString("area_id", serialCache.get(jsonObject.get("serial_id")));
+                editor.commit();
+            } else {
+                String area_ID = settings.getString("area_id", null/*default value*/);
+                areaID.setText(area_ID);
             }
         } catch (JSONException e) {
             Log.e("JSON ERROR", "Error converting String to JSON Object.");
@@ -85,7 +100,7 @@ public class AuthenticatedActivity extends Activity implements OnTaskCompleted, 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch(id){
+        switch (id) {
             case R.id.action_logout:
                 logoutUser();
         }
@@ -94,7 +109,8 @@ public class AuthenticatedActivity extends Activity implements OnTaskCompleted, 
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        Intent switchActivity = new Intent(this, UnderConstructionActivity.class);
+        switch (v.getId()) {
             case R.id.logout_button:
                 logoutUser();
                 break;
@@ -106,10 +122,16 @@ public class AuthenticatedActivity extends Activity implements OnTaskCompleted, 
                 asyncRequest = new JSONParser(this, responseURL);
                 asyncRequest.execute(params);
                 break;
+            case R.id.navigate_to_gate_button:
+                this.startActivity(switchActivity);
+                break;
+            case R.id.information_button:
+                this.startActivity(switchActivity);
+                break;
         }
     }
 
-    private void logoutUser(){
+    private void logoutUser() {
         SharedPreferences settings = PreferenceManager
                 .getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = settings.edit();

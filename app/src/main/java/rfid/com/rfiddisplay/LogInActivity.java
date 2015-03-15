@@ -21,6 +21,7 @@ import com.parse.ParseInstallation;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -74,18 +75,30 @@ public class LogInActivity extends Activity implements OnTaskCompleted, View.OnC
     public void onTaskCompleted(JSONObject jObj) {
         setProgressBarIndeterminateVisibility(false);
         //Toast.makeText(getApplicationContext(), "Result: " + jObj.toString(), Toast.LENGTH_LONG).show();
-        SharedPreferences settings = PreferenceManager
-                .getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString("auth_token", "authenticated");
-        editor.commit();
 
-        ParseInstallation installation = ParseInstallation.getCurrentInstallation();
-        installation.put("passportNo", passportNumber);
-        installation.saveInBackground();
+        try {
+            if(!jObj.getString("result").equals("user_not_found")) {
+                SharedPreferences settings = PreferenceManager
+                        .getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putString("auth_token", "authenticated");
+                editor.commit();
 
-        Intent newActivity = new Intent(this, LandingActivity.class);
-        this.startActivity(newActivity);
+                ParseInstallation installation = ParseInstallation.getCurrentInstallation();
+                installation.put("passportNo", passportNumber);
+                installation.saveInBackground();
+
+                Intent newActivity = new Intent(this, LandingActivity.class);
+                this.startActivity(newActivity);
+            } else {
+                Toast.makeText(getApplicationContext(), "Invalid passport name\nPlease make sure you have checked in and received your tag.", Toast.LENGTH_LONG).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override

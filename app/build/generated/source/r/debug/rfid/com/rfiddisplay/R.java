@@ -14,6 +14,7 @@ public final class R {
         public static final int apptheme_color=0x7f040000;
         public static final int colorPrimary=0x7f040001;
         public static final int largebuttons_color=0x7f040002;
+        public static final int underConstruction=0x7f040003;
     }
     public static final class dimen {
         public static final int activity_horizontal_margin=0x7f050000;
@@ -49,6 +50,7 @@ public final class R {
         public static final int largebuttons_btn_default_normal_holo_light=0x7f020019;
         public static final int largebuttons_btn_default_pressed_holo_light=0x7f02001a;
         public static final int placeholder=0x7f02001b;
+        public static final int under_construction=0x7f02001c;
     }
     public static final class id {
         public static final int action_logout=0x7f090011;
@@ -73,13 +75,13 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_authenticated=0x7f030000;
-        public static final int activity_explore_area=0x7f030001;
-        public static final int activity_landing=0x7f030002;
-        public static final int activity_log_in=0x7f030003;
-        public static final int activity_poi_detail=0x7f030004;
-        public static final int activity_poi_list=0x7f030005;
-        public static final int activity_splash_screen=0x7f030006;
-        public static final int activity_trial=0x7f030007;
+        public static final int activity_landing=0x7f030001;
+        public static final int activity_log_in=0x7f030002;
+        public static final int activity_poi_detail=0x7f030003;
+        public static final int activity_poi_list=0x7f030004;
+        public static final int activity_splash_screen=0x7f030005;
+        public static final int activity_trial=0x7f030006;
+        public static final int activity_under_construction=0x7f030007;
         public static final int custom_list_view_layout=0x7f030008;
         public static final int fragment_poi_detail=0x7f030009;
     }
@@ -89,7 +91,8 @@ public final class R {
         public static final int menu_explore_area=0x7f080002;
         public static final int menu_landing=0x7f080003;
         public static final int menu_trial=0x7f080004;
-        public static final int splash_screen=0x7f080005;
+        public static final int menu_under_construction=0x7f080005;
+        public static final int splash_screen=0x7f080006;
     }
     public static final class string {
         public static final int action_logout=0x7f060000;
@@ -102,8 +105,9 @@ public final class R {
         public static final int title_activity_landing=0x7f060007;
         public static final int title_activity_splash_screen=0x7f060008;
         public static final int title_activity_trial=0x7f060009;
-        public static final int title_poi_detail=0x7f06000a;
-        public static final int title_poi_list=0x7f06000b;
+        public static final int title_activity_under_construction=0x7f06000a;
+        public static final int title_poi_detail=0x7f06000b;
+        public static final int title_poi_list=0x7f06000c;
     }
     public static final class style {
         public static final int AppTheme=0x7f070000;

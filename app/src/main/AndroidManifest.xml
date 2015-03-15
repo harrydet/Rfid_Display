@@ -79,11 +79,7 @@
 
         <activity
             android:name=".LandingActivity"
-            android:label="@string/title_activity_landing" >
-        </activity>
-        <activity
-            android:name=".ExploreAreaActivity"
-            android:label="@string/title_activity_explore_area" >
+            android:label="@string/title_activity_landing">
         </activity>
         <activity
             android:name=".PoiListActivity"
@@ -100,6 +96,13 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="rfid.com.rfiddisplay.PoiListActivity" />
+        </activity>
+        <activity
+            android:name=".UnderConstructionActivity"
+            android:label="@string/title_activity_under_construction" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="rfid.com.rfiddisplay.AuthenticatedActivity" />
         </activity>
     </application>
 
